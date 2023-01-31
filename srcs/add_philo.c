@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:31:55 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/31 03:07:13 by aabda            ###   ########.fr       */
+/*   Updated: 2023/01/31 20:18:14 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,21 @@ void	ft_add_prev_for_first_and_last(t_global *g)
 	t_philo	*b_last;
 	t_philo	*tmp;
 
-	first = g->philo;
-	tmp = g->philo;
-	while (tmp)
+	if (g->params.nbr_philo > 1)
 	{
-		if (tmp->next->next == first)
-			b_last = tmp;
-		if (tmp->next == first)
-			break ;
-		tmp = tmp->next;
+		first = g->philo;
+		tmp = g->philo;
+		while (tmp)
+		{
+			if (tmp->next->next == first)
+				b_last = tmp;
+			if (tmp->next == first)
+				break ;
+			tmp = tmp->next;
+		}
+		tmp->prev = b_last;
+		first->prev = tmp;
 	}
-	tmp->prev = b_last;
-	first->prev = tmp;
 }
 
 static void	ft_add_philo2(t_global *g, t_philo *c, t_philo *n_p, int philo_nbr)
@@ -52,7 +55,6 @@ void	ft_add_philo(t_global *g, int philo_nbr)
 {
 	t_philo	*new_philo;
 	t_philo	*current;
-
 	new_philo = malloc(sizeof(t_philo));
 	current = NULL;
 	if (!new_philo)
