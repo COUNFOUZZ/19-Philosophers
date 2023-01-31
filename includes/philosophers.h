@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/31 03:04:29 by aabda            ###   ########.fr       */
+/*   Updated: 2023/01/31 20:27:13 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_params
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
-	int	nbr_philo_must_eat;
+	int	must_eat;
 }	t_params;
 
 typedef struct s_philo
