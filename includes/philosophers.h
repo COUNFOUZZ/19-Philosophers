@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/31 20:27:13 by aabda            ###   ########.fr       */
+/*   Updated: 2023/01/31 20:45:28 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_global
 }	t_global;
 
 /*		../srcs/libft_utils.c		*/
+size_t	ft_strlen(const char *s);
+void	ft_putstr_fd(int fd, const char *s);
 int		ft_atoi(const char *str);
 
 /*		../srcs/utils.c		*/

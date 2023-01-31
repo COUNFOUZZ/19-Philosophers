@@ -6,11 +6,26 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:50:20 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/30 19:51:54 by aabda            ###   ########.fr       */
+/*   Updated: 2023/01/31 20:45:07 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr_fd(int fd, const char *s)
+{
+	write(fd, s, ft_strlen(s));
+}
 
 int	ft_atoi(const char *str)
 {
