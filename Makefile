@@ -6,14 +6,14 @@
 #    By: aabda <aabda@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 13:36:56 by aabda             #+#    #+#              #
-#    Updated: 2023/01/31 01:35:28 by aabda            ###   ########.fr        #
+#    Updated: 2023/01/31 21:20:04 by aabda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= philo
 DIR		= srcs/
 CC		= gcc
-FLAGS	= -pthread -Wall -Wextra
+FLAGS	= -pthread -Wall -Wextra -Werror
 
 SRCS = $(DIR)main.c $(DIR)libft_utils.c \
 	$(DIR)utils.c $(DIR)add_philo.c
