@@ -6,11 +6,26 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:09 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/30 23:05:27 by aabda            ###   ########.fr       */
+/*   Updated: 2023/01/31 22:50:31 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+static int	ft_check_error(int res)
+{
+	if (res < 0)
+	{
+		ft_putstr_fd(2, "ERROR !\n");
+		if (res == -1)
+			ft_putstr_fd(2, ERR_MALLOC);
+		if (res == -2)
+			ft_putstr_fd(2, ERR_NOT_ENOUGH_PHILO);
+		if (res == -3)
+			ft_putstr_fd(2, ERR_NOT_ENOUGH_TIME_TO_DIE);
+	}
+	return (res);
+}
 
 int	main(int argc, const char **argv)
 {
@@ -18,9 +33,9 @@ int	main(int argc, const char **argv)
 
 	if (argc == 5 || argc == 6)
 	{
-		ft_init_struct(&g, argv);
-		return (0);
+		ft_check_error(ft_init_struct(&g, argv));
 	}
 	else
-		printf("Invalide number of argument\n");
+		ft_putstr_fd(2, ERR_INVALID_ARGS);
+	return (-1);
 }
