@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/31 20:45:28 by aabda            ###   ########.fr       */
+/*   Updated: 2023/01/31 22:44:07 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_params
 typedef struct s_philo
 {
 	int				philo_number;
+	int				left_hand;
+	int				right_hand;
 	struct s_philo	*next;
 	struct s_philo	*prev;
 }	t_philo;
