@@ -30,7 +30,8 @@ void	ft_add_prev_for_first_and_last(t_global *g)
 				break ;
 			tmp = tmp->next;
 		}
-		tmp->prev = b_last;
+		if (tmp)
+			tmp->prev = b_last;
 		first->prev = tmp;
 	}
 }
