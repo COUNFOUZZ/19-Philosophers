@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:31:55 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/31 22:54:53 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/13 15:59:51 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ static void	ft_add_philo2(t_global *g, t_philo *c, t_philo *n_p, int philo_nbr)
 
 static void	ft_add_value_to_philo(t_philo *new_philo, int philo_nbr)
 {
-	new_philo->philo_number = philo_nbr;
-	new_philo->left_hand = 1;
-	new_philo->right_hand = 0;
+	new_philo->philo_id = philo_nbr;
+	new_philo->fork = malloc(sizeof(pthread_mutex_t));
 	new_philo->next = NULL;
 }
 
@@ -72,7 +71,7 @@ void	ft_add_philo(t_global *g, int philo_nbr)
 		g->err_check = -1;
 		return ;
 	}
-	ft_add_value_to_philo(new_philo, philo_nbr + 1);
+	ft_add_value_to_philo(new_philo, philo_nbr);
 	if (!g->philo)
 	{
 		new_philo->prev = NULL;
@@ -93,7 +92,7 @@ void	ft_print_lst(t_global *g)
 	current = g->philo;
 	while (++i < g->params.nbr_philo)
 	{
-		printf("[%p]<- [%p | Philo N.%d]\tleft_hand = %d\tright_hand = %d\t->[%p]\n", current->prev, current, current->philo_number, current->left_hand, current->right_hand, current->next);
+		printf("[%p]<- [%p | Philo_id.%d] ->[%p]\n", current->prev, current, current->philo_id, current->next);
 		current = current->next;
 	}
 }

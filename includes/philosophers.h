@@ -33,9 +33,8 @@ typedef struct s_params
 
 typedef struct s_philo
 {
-	int				philo_number;
-	int				left_hand;
-	int				right_hand;
+	int				philo_id;
+	pthread_mutex_t	*fork;
 	struct s_philo	*next;
 	struct s_philo	*prev;
 }	t_philo;
