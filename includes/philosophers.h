@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/01/31 22:44:07 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/13 15:51:26 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_putstr_fd(int fd, const char *s);
 int		ft_atoi(const char *str);
 
 /*		../srcs/utils.c		*/
-int		ft_init_struct(t_global *g, const char **argv);
+int		ft_init_struct(t_global *g, int argc, const char **argv);
 
 /*		../srcs/add_philo.c		*/
 void	ft_add_philo(t_global *g, int philo_nbr);
