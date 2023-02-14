@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:32:59 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/14 12:29:55 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/14 12:32:29 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,21 @@ int	ft_error(t_global *g, int res)
 			ft_free_philo(g);
 	}
 	return (res);
+}
+
+void	ft_free_philo(t_global *g)
+{
+	t_philo		*tmp;
+	int			i;
+
+	tmp = g->philo;
+	i = -1;
+	while (++i < g->params.nbr_philo)
+	{
+		g->philo = tmp;
+		tmp = g->philo->next;
+		if (g->philo->fork)
+			free(g->philo->fork);
+		free(g->philo);
+	}
 }
