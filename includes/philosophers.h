@@ -60,4 +60,8 @@ int		ft_add_philo(t_global *g, int philo_nbr);
 void	ft_add_prev_for_first_and_last(t_global *g);
 void	ft_print_lst(t_global *g);
 
+/*		../srcs/error.c		*/
+int		ft_error(t_global *g, int res);
+void	ft_free_philo(t_global *g);
+
 #endif
