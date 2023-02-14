@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:31:55 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/13 15:59:51 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/13 21:09:26 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,22 @@ static void	ft_add_philo2(t_global *g, t_philo *c, t_philo *n_p, int philo_nbr)
 	}
 }
 
-static void	ft_add_value_to_philo(t_philo *new_philo, int philo_nbr)
+static int	ft_add_value_to_philo(t_global *g, t_philo *new, int philo_nbr)
 {
-	new_philo->philo_id = philo_nbr;
-	new_philo->fork = malloc(sizeof(pthread_mutex_t));
-	new_philo->next = NULL;
+	new->philo_id = philo_nbr;
+	new->fork = malloc(sizeof(pthread_mutex_t));
+	if (!new->fork)
+	{
+		g->err_check = -1;
+		return (g->err_check);
+	}
+	if (pthread_mutex_init(new->fork, NULL) != 0)
+		g->err_check = -7;
+	new->next = NULL;
+	return (g->err_check);
 }
 
-void	ft_add_philo(t_global *g, int philo_nbr)
+int	ft_add_philo(t_global *g, int philo_nbr)
 {
 	t_philo	*current;
 	t_philo	*new_philo;
@@ -69,9 +77,10 @@ void	ft_add_philo(t_global *g, int philo_nbr)
 	if (!new_philo)
 	{
 		g->err_check = -1;
-		return ;
+		return (g->err_check);
 	}
-	ft_add_value_to_philo(new_philo, philo_nbr);
+	if (ft_add_value_to_philo(g, new_philo, philo_nbr) != 0)
+		return (g->err_check);
 	if (!g->philo)
 	{
 		new_philo->prev = NULL;
@@ -81,6 +90,7 @@ void	ft_add_philo(t_global *g, int philo_nbr)
 	{
 		ft_add_philo2(g, current, new_philo, philo_nbr);
 	}
+	return (g->err_check);
 }
 
 void	ft_print_lst(t_global *g)

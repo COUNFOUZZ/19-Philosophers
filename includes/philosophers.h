@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/13 15:51:26 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/13 21:34:29 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_params
 typedef struct s_philo
 {
 	int				philo_id;
+	pthread_t		thread_id;
 	pthread_mutex_t	*fork;
 	struct s_philo	*next;
 	struct s_philo	*prev;
@@ -55,7 +56,7 @@ int		ft_atoi(const char *str);
 int		ft_init_struct(t_global *g, int argc, const char **argv);
 
 /*		../srcs/add_philo.c		*/
-void	ft_add_philo(t_global *g, int philo_nbr);
+int		ft_add_philo(t_global *g, int philo_nbr);
 void	ft_add_prev_for_first_and_last(t_global *g);
 void	ft_print_lst(t_global *g);
 

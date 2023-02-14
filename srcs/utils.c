@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:05:24 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/13 15:52:53 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/13 22:15:51 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,24 @@ static int	ft_parse_args(t_global *g, int argc, const char **argv)
 	return (g->err_check);
 }
 
-static void	ft_check_args(t_global *g)
+static int	ft_philo_init(t_global *g)
 {
 	int	i;
 
 	i = -1;
 	while (++i < g->params.nbr_philo)
-		ft_add_philo(g, i);
+		if (ft_add_philo(g, i) != 0)
+			return (g->err_check);
 	ft_add_prev_for_first_and_last(g);
+	return (g->err_check);
 }
 
 int	ft_init_struct(t_global *g, int argc, const char **argv)
 {
 	if (ft_parse_args(g, argc, argv) < 0)
 		return (g->err_check);
-	ft_check_args(g);
+	if (ft_philo_init(g) < 0)
+		return (g->err_check);
 	ft_print_lst(g);
 	return (g->err_check);
 }
