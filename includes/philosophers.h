@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/13 21:34:29 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/15 18:08:41 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	int				philo_id;
 	pthread_t		thread_id;
 	pthread_mutex_t	*fork;
+	t_params		params;
 	struct s_philo	*next;
 	struct s_philo	*prev;
 }	t_philo;

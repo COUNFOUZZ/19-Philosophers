@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:31:55 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/13 21:09:26 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/15 18:10:57 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,23 @@ void	ft_add_prev_for_first_and_last(t_global *g)
 	}
 }
 
+static int	ft_add_value_to_philo(t_global *g, t_philo *new, int philo_nbr)
+{
+	new->philo_id = philo_nbr;
+	new->fork = malloc(sizeof(pthread_mutex_t));
+	if (!new->fork)
+	{
+		g->err_check = -1;
+		return (g->err_check);
+	}
+	if (pthread_mutex_init(new->fork, NULL) != 0)
+		g->err_check = -7;
+	new->params = g->params;
+	printf("%d\n", new->params.time_to_die);
+	new->next = NULL;
+	return (g->err_check);
+}
+
 static void	ft_add_philo2(t_global *g, t_philo *c, t_philo *n_p, int philo_nbr)
 {
 	c = g->philo;
@@ -50,21 +67,6 @@ static void	ft_add_philo2(t_global *g, t_philo *c, t_philo *n_p, int philo_nbr)
 		c = c->next;
 		c->next = g->philo;
 	}
-}
-
-static int	ft_add_value_to_philo(t_global *g, t_philo *new, int philo_nbr)
-{
-	new->philo_id = philo_nbr;
-	new->fork = malloc(sizeof(pthread_mutex_t));
-	if (!new->fork)
-	{
-		g->err_check = -1;
-		return (g->err_check);
-	}
-	if (pthread_mutex_init(new->fork, NULL) != 0)
-		g->err_check = -7;
-	new->next = NULL;
-	return (g->err_check);
 }
 
 int	ft_add_philo(t_global *g, int philo_nbr)
