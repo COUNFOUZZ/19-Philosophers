@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:31:55 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/15 18:10:57 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/15 22:07:39 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static int	ft_add_value_to_philo(t_global *g, t_philo *new, int philo_nbr)
 	if (pthread_mutex_init(new->fork, NULL) != 0)
 		g->err_check = -7;
 	new->params = g->params;
-	printf("%d\n", new->params.time_to_die);
 	new->next = NULL;
 	return (g->err_check);
 }
