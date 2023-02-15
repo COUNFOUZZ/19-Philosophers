@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:05:24 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/13 22:15:51 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/15 22:21:15 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int	ft_init_struct(t_global *g, int argc, const char **argv)
 	if (ft_parse_args(g, argc, argv) < 0)
 		return (g->err_check);
 	if (ft_philo_init(g) < 0)
+		return (g->err_check);
+	if (ft_threads_init(g) < 0)
+		return (g->err_check);
+	if (ft_threads_join(g) < 0)
 		return (g->err_check);
 	ft_print_lst(g);
 	return (g->err_check);

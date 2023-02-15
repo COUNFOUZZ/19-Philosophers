@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/15 18:08:41 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/15 22:55:03 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <limits.h>
 # include <pthread.h>
 # include "errors.h"
-
-// Need to be delete
-# include <stdio.h>
 
 typedef struct s_params
 {
@@ -60,6 +58,10 @@ int		ft_init_struct(t_global *g, int argc, const char **argv);
 int		ft_add_philo(t_global *g, int philo_nbr);
 void	ft_add_prev_for_first_and_last(t_global *g);
 void	ft_print_lst(t_global *g);
+
+/*		../srcs/thread.c		*/
+int		ft_threads_init(t_global *g);
+int		ft_threads_join(t_global *g);
 
 /*		../srcs/error.c		*/
 int		ft_error(t_global *g, int res);
