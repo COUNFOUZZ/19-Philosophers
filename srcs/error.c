@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:32:59 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/15 17:26:23 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/15 22:50:50 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@ static void	ft_error_message(int res)
 {
 	if (res == -1)
 		ft_putstr_fd(2, ERR_MALLOC);
-	if (res == -2)
+	else if (res == -2)
 		ft_putstr_fd(2, ERR_NOT_ENOUGH_PHILO);
-	if (res == -3)
+	else if (res == -3)
 		ft_putstr_fd(2, ERR_NOT_ENOUGH_TIME_TO_DIE);
-	if (res == -4)
+	else if (res == -4)
 		ft_putstr_fd(2, ERR_NOT_ENOUGH_TIME_TO_EAT);
-	if (res == -5)
+	else if (res == -5)
 		ft_putstr_fd(2, ERR_NOT_ENOUGH_TIME_TO_SLEEP);
-	if (res == -6)
+	else if (res == -6)
 		ft_putstr_fd(2, ERR_NOT_ENOUGH_MUST_EAT);
-	if (res == -7)
+	else if (res == -7)
 		ft_putstr_fd(2, ERR_MUTEX_INIT);
+	else if (res == -8)
+		ft_putstr_fd(2, ERR_THREAD_INIT);
+	else if (res == -9)
+		ft_putstr_fd(2, ERR_THREAD_JOIN);
 }
 
 int	ft_error(t_global *g, int res)

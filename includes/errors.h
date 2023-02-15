@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 22:58:19 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/13 19:21:48 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/15 23:17:39 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ eat\" (argv[5]) \
 must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m ! \
 (this arg is optionnal).\n"
 # define ERR_MUTEX_INIT "Failed to initialize mutex\n"
+# define ERR_THREAD_INIT "Failed to initialize thread\n"
+# define ERR_THREAD_JOIN "Failed to join thread\n"
 
 #endif
