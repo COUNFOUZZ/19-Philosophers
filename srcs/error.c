@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:32:59 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/16 16:34:50 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/16 19:08:40 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,23 @@ int	ft_error(t_global *g, int res)
 void	ft_free_philo(t_global *g)
 {
 	t_philo	*first;
+	t_philo	*current;
 	t_philo	*tmp;
 
 	if (!g->philo)
 		return ;
 	first = g->philo;
+	current = g->philo;
 	tmp = g->philo;
-	while (g->philo)
+	while (current)
 	{
-		g->philo = tmp;
-		tmp = g->philo->next;
-		if (!g->philo || tmp == first)
+		tmp = current;
+		current = current->next;
+		if (tmp->fork)
+			free(tmp->fork);
+		free(tmp);
+		tmp = NULL;
+		if (current == first)
 			return ;
-		if (g->philo->fork)
-			free(g->philo->fork);
-		free(g->philo);
-		g->philo = NULL;
 	}
 }
