@@ -6,11 +6,23 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:05:24 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/15 22:21:15 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/18 23:33:23 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+time_t	ft_get_time_in_ms(t_global *g)
+{
+	struct timeval	current_time;
+
+	if (gettimeofday(&current_time, NULL) < 0)
+	{
+		g->err_check = -10;
+		return (g->err_check);
+	}
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+}
 
 static void	ft_check_args_error(t_global *g)
 {

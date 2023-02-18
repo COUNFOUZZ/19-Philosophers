@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:32:59 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/16 19:08:40 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/18 23:33:49 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	ft_error_message(int res)
 		ft_putstr_fd(2, ERR_THREAD_INIT);
 	else if (res == -9)
 		ft_putstr_fd(2, ERR_THREAD_JOIN);
+	else if (res == -10)
+		ft_putstr_fd(2, ERR_GET_TIME);
 }
 
 int	ft_error(t_global *g, int res)

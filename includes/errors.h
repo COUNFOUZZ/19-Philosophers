@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 22:58:19 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/15 23:17:39 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/18 23:33:06 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m ! \
 # define ERR_MUTEX_INIT "Failed to initialize mutex\n"
 # define ERR_THREAD_INIT "Failed to initialize thread\n"
 # define ERR_THREAD_JOIN "Failed to join thread\n"
+# define ERR_GET_TIME "Failed to get time of the day\n"
 
 #endif

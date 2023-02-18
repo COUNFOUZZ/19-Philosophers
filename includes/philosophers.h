@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include <pthread.h>
+# include <sys/time.h>
 # include "errors.h"
 
 typedef struct s_params
@@ -53,6 +54,7 @@ int		ft_atoi(const char *str);
 
 /*		../srcs/utils.c		*/
 int		ft_init_struct(t_global *g, int argc, const char **argv);
+time_t	ft_get_time_in_ms(t_global *g);
 
 /*		../srcs/add_philo.c		*/
 int		ft_add_philo(t_global *g, int philo_nbr);
