@@ -6,7 +6,7 @@
 #    By: aabda <aabda@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 13:36:56 by aabda             #+#    #+#              #
-#    Updated: 2023/02/15 21:34:32 by aabda            ###   ########.fr        #
+#    Updated: 2023/02/18 21:57:38 by aabda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLAGS	= -pthread -Wall -Wextra -Werror
 
 SRCS = $(DIR)main.c $(DIR)libft_utils.c \
 	$(DIR)utils.c $(DIR)add_philo.c \
-	$(DIR)error.c $(DIR)thread.c
+	$(DIR)error.c $(DIR)thread.c \
+	$(DIR)routine.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,16 +6,11 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:33:40 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/15 23:54:03 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/18 21:56:17 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-void	ft_routine(t_philo *current)
-{
-	printf("[%p] %d - Thread init\n", current, current->philo_id);
-}
 
 int	ft_threads_join(t_global *g)
 {

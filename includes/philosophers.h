@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/15 22:55:03 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/18 23:32:14 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ void	ft_print_lst(t_global *g);
 /*		../srcs/thread.c		*/
 int		ft_threads_init(t_global *g);
 int		ft_threads_join(t_global *g);
+
+/*		../srcs/routine.c		*/
+void	ft_routine(t_philo *current);
 
 /*		../srcs/error.c		*/
 int		ft_error(t_global *g, int res);
