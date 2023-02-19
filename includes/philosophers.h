@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/18 23:32:14 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/19 19:21:33 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_params
 typedef struct s_philo
 {
 	int				philo_id;
+	int				eat_count;
 	pthread_t		thread_id;
 	pthread_mutex_t	*fork;
 	t_params		params;
