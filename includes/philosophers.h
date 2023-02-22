@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/19 19:21:33 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/22 10:37:50 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,21 @@
 
 typedef struct s_params
 {
-	int	nbr_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat;
+	int				nbr_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
+	int				someone_died;
+	time_t			start_time;
+	pthread_mutex_t	*write;
 }	t_params;
 
 typedef struct s_philo
 {
 	int				philo_id;
 	int				eat_count;
+	int				is_dead;
 	pthread_t		thread_id;
 	pthread_mutex_t	*fork;
 	t_params		params;

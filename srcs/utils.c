@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:05:24 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/18 23:33:23 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/22 11:02:55 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,25 @@ int	ft_init_struct(t_global *g, int argc, const char **argv)
 {
 	if (ft_parse_args(g, argc, argv) < 0)
 		return (g->err_check);
+	g->params.someone_died = 0;
+	g->params.start_time = ft_get_time_in_ms(g);
+	g->params.write = malloc(sizeof(pthread_mutex_t));
+	if (!g->params.write)
+	{
+		g->err_check = -1;
+		return (g->err_check);
+	}
 	if (ft_philo_init(g) < 0)
 		return (g->err_check);
 	if (ft_threads_init(g) < 0)
 		return (g->err_check);
 	if (ft_threads_join(g) < 0)
 		return (g->err_check);
-	ft_print_lst(g);
+	// ft_print_lst(g);
+	// g->philo->is_dead = 1;
+	// if (g->philo->is_dead)
+	// 	g->params.someone_died++;
+	// printf("%d\n", g->params.someone_died);
+	// printf("%d\n", g->philo->params.someone_died);
 	return (g->err_check);
 }

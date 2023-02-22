@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:31:55 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/19 19:26:46 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/21 22:37:24 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_add_prev_for_first_and_last(t_global *g)
 
 static int	ft_add_value_to_philo(t_global *g, t_philo *new, int philo_nbr)
 {
-	new->philo_id = philo_nbr;
+	new->philo_id = philo_nbr + 1;
 	new->fork = malloc(sizeof(pthread_mutex_t));
 	if (!new->fork)
 	{
@@ -47,6 +47,7 @@ static int	ft_add_value_to_philo(t_global *g, t_philo *new, int philo_nbr)
 	}
 	if (pthread_mutex_init(new->fork, NULL) != 0)
 		g->err_check = -7;
+	new->is_dead = 0;
 	new->eat_count = 0;
 	new->params = g->params;
 	new->next = NULL;
