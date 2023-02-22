@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 22:58:19 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/18 23:33:06 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/22 10:53:01 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m !\n"
 must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m !\n"
 # define ERR_NOT_ENOUGH_MUST_EAT "The \"number of times each philosopher must \
 eat\" (argv[5]) \
-must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m ! \
+must be \033[0;31;1mempty\033[0;0m or more than \033[0;31;1m0\033[0;0m ! \
 (this arg is optionnal).\n"
 # define ERR_MUTEX_INIT "Failed to initialize mutex\n"
 # define ERR_THREAD_INIT "Failed to initialize thread\n"
