@@ -24,33 +24,23 @@ time_t	ft_get_time_in_ms(t_global *g)
 	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
-static void	ft_check_args_error(t_global *g)
+static void	ft_check_args_error(t_global *g, int argc)
 {
 	if (!g->params.nbr_philo || g->params.nbr_philo <= 0)
-	{
 		g->err_check = -2;
-		return ;
-	}
-	if (!g->params.time_to_die || g->params.time_to_die <= 0)
-	{
+	else if (!g->params.time_to_die || g->params.time_to_die <= 0)
 		g->err_check = -3;
-		return ;
-	}
-	if (!g->params.time_to_eat || g->params.time_to_eat <= 0)
-	{
+	else if (!g->params.time_to_eat || g->params.time_to_eat <= 0)
 		g->err_check = -4;
-		return ;
-	}
-	if (!g->params.time_to_sleep || g->params.time_to_sleep <= 0)
-	{
+	else if (!g->params.time_to_sleep || g->params.time_to_sleep <= 0)
 		g->err_check = -5;
-		return ;
-	}
-	if (g->params.must_eat && g->params.must_eat <= 0)
+	else if (g->params.must_eat && g->params.must_eat < 0)
 	{
+		if (argc == 5 && g->params.must_eat == -1)
+			return ;
 		g->err_check = -6;
-		return ;
 	}
+	return ;
 }
 
 static int	ft_parse_args(t_global *g, int argc, const char **argv)
@@ -63,7 +53,9 @@ static int	ft_parse_args(t_global *g, int argc, const char **argv)
 	g->params.time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		g->params.must_eat = ft_atoi(argv[5]);
-	ft_check_args_error(g);
+	else
+		g->params.must_eat = -1;
+	ft_check_args_error(g, argc);
 	return (g->err_check);
 }
 
