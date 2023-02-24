@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:31:55 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/21 22:37:24 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/23 01:00:59 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_add_value_to_philo(t_global *g, t_philo *new, int philo_nbr)
 	}
 	if (pthread_mutex_init(new->fork, NULL) != 0)
 		g->err_check = -7;
-	new->is_dead = 0;
+	new->last_meal = ft_get_time_in_ms(g);
 	new->eat_count = 0;
 	new->params = g->params;
 	new->next = NULL;
