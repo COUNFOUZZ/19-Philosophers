@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:32:59 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/18 23:33:49 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/27 17:06:09 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ int	ft_error(t_global *g, int res)
 	return (res);
 }
 
+void	ft_free_struct(t_global *g)
+{
+	if (g->params.someone_died)
+		free(g->params.someone_died);
+	if (g->params.full_eaten)
+		free(g->params.full_eaten);
+	if (g->params.death)
+		free(g->params.death);
+	if (g->params.write)
+		free(g->params.write);
+}
+
 void	ft_free_philo(t_global *g)
 {
 	t_philo	*first;
@@ -64,7 +76,10 @@ void	ft_free_philo(t_global *g)
 		tmp = current;
 		current = current->next;
 		if (tmp->fork)
+		{
+			pthread_mutex_destroy(tmp->fork);
 			free(tmp->fork);
+		}
 		free(tmp);
 		tmp = NULL;
 		if (current == first)

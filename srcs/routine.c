@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:56:21 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/24 16:41:34 by aabda            ###   ########.fr       */
+/*   Updated: 2023/02/25 15:24:28 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_philo_checker(t_global *g)
 	while (!(*g->params.someone_died) && *g->params.full_eaten != g->params.nbr_philo)
 	{
 		usleep(100);
-		while (g->philo && *g->params.full_eaten != g->params.nbr_philo)
+		while (g->philo)
 		{
 			now = ft_get_time_in_ms(g) - g->params.start_time;
 			if (now >= g->philo->last_meal + g->params.time_to_die)
@@ -39,7 +39,7 @@ void	ft_philo_checker(t_global *g)
 				pthread_mutex_lock(g->params.write);
 				// printf("%ld\n", now);
 				// printf("[%ld]\n", ft_get_time_in_ms(NULL) - (g->philo->last_meal + g->params.time_to_die));
-				printf("%ld %d %s", now, g->philo->philo_id, "died\n");
+				printf("%ld \033[0;34m%d\033[0;0m %s", now, g->philo->philo_id, "\033[0;31mdied\033[0;0m\n");
 				*g->params.someone_died = 1;
 				pthread_mutex_unlock(g->params.write);
 				pthread_mutex_unlock(g->params.death);
@@ -76,7 +76,7 @@ void	ft_simulation(t_philo *current)
 		pthread_mutex_lock(current->next->fork);
 		ft_print_status(current, current->params.write, "\033[0;33mhas taken a fork\033[0;0m\n");
 		ft_print_status(current, current->params.write, "\033[0;32mis eating\033[0;0m\n");
-		current->last_meal = ft_get_time_in_ms(NULL);
+		current->last_meal = ft_get_time_in_ms(NULL) - current->params.start_time;
 		current->eat_count++;
 		ft_sleep(current->params, current->params.time_to_eat);
 		pthread_mutex_unlock(current->fork);
