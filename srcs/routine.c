@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:56:21 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/25 15:24:28 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/03 15:17:05 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,6 @@ void	ft_philo_checker(t_global *g)
 		}
 	}
 }
-
-static void	ft_sleep(t_params params, time_t time)
-{
-	time_t	now;
-	time_t	start;
-
-	start = ft_get_time_in_ms(NULL);
-	while (!(*params.someone_died))
-	{
-		now = ft_get_time_in_ms(NULL);
-		if (now - start >= time)
-			break ;
-		usleep(100);
-	}
-}
-
 
 void	ft_simulation(t_philo *current)
 {

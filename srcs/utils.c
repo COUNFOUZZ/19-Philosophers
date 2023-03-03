@@ -6,23 +6,11 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:05:24 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/24 15:14:35 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/03 15:15:38 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-time_t	ft_get_time_in_ms(t_global *g)
-{
-	struct timeval	current_time;
-
-	if (gettimeofday(&current_time, NULL) < 0)
-	{
-		g->err_check = -10;
-		return (g->err_check);
-	}
-	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
-}
 
 static void	ft_check_args_error(t_global *g, int argc)
 {
@@ -71,21 +59,36 @@ static int	ft_philo_init(t_global *g)
 	return (g->err_check);
 }
 
-int	ft_init_struct(t_global *g, int argc, const char **argv)
+static int	ft_init_mutex_param(t_global *g)
 {
-	if (ft_parse_args(g, argc, argv) < 0)
-		return (g->err_check);
-	g->params.someone_died = malloc(sizeof(int));
-	g->params.start_time = ft_get_time_in_ms(g);
 	g->params.death = malloc(sizeof(pthread_mutex_t));
 	g->params.write = malloc(sizeof(pthread_mutex_t));
-	g->params.full_eaten = malloc(sizeof(int));
-	if (!g->params.death || !g->params.write \
-		|| !g->params.full_eaten || !g->params.someone_died)
+	if (!g->params.death || !g->params.write)
 	{
 		g->err_check = -1;
 		return (g->err_check);
 	}
+	if (pthread_mutex_init(g->params.death, NULL) != 0)
+		g->err_check = -7;
+	if (pthread_mutex_init(g->params.write, NULL) != 0)
+		g->err_check = -7;
+	return (g->err_check);
+}
+
+int	ft_init_struct(t_global *g, int argc, const char **argv)
+{
+	if (ft_parse_args(g, argc, argv) < 0)
+		return (g->err_check);
+	g->params.start_time = ft_get_time_in_ms(g);
+	g->params.someone_died = malloc(sizeof(int));
+	g->params.full_eaten = malloc(sizeof(int));
+	if (!g->params.full_eaten)
+	{
+		g->err_check = -1;
+		return (g->err_check);
+	}
+	if (ft_init_mutex_param(g) < 0)
+		return (g->err_check);
 	*g->params.full_eaten = 0;
 	*g->params.someone_died = 0;
 	printf("%d [%p]\n", *g->params.full_eaten, g->params.full_eaten);
