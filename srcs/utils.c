@@ -80,9 +80,9 @@ int	ft_init_struct(t_global *g, int argc, const char **argv)
 	if (ft_parse_args(g, argc, argv) < 0)
 		return (g->err_check);
 	g->params.start_time = ft_get_time_in_ms(g);
-	g->params.someone_died = malloc(sizeof(int));
-	g->params.full_eaten = malloc(sizeof(int));
-	if (!g->params.full_eaten)
+	g->params.someone_died = malloc(sizeof(atomic_int));
+	g->params.full_eaten = malloc(sizeof(atomic_int));
+	if (!g->params.someone_died || !g->params.full_eaten)
 	{
 		g->err_check = -1;
 		return (g->err_check);

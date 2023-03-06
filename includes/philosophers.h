@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/06 13:20:48 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 14:44:40 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_params
 	int				time_to_sleep;
 	int				must_eat;
 	atomic_int		*someone_died;
-	int				*full_eaten;
+	atomic_int		*full_eaten;
 	time_t			start_time;
 	pthread_mutex_t	*eat;
 	pthread_mutex_t	*death;
