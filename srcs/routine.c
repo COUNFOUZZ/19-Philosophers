@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:56:21 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/06 16:11:29 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 17:44:09 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_philo_checker(t_global *g)
 	t_philo	*first;
 
 	first = g->philo;
-	while (!(*g->params.someone_died) && !(*g->params.full_eaten))
+	while (!(*g->params.someone_died) && !(*g->params.full_eaten) && g->params.nbr_philo > 1)
 	{
 		usleep(100);
 		while (g->philo)
@@ -65,7 +65,7 @@ void	ft_philo_checker(t_global *g)
 			if (g->philo == first)
 				break ;
 		}
-		if (g->params.must_eat != -1 && g->params.nbr_philo > 1)
+		if (g->params.must_eat != -1)
 			ft_check_must_eat(g);
 	}
 }
@@ -74,8 +74,6 @@ void	ft_simulation(t_philo *current)
 {
 	while (!(*current->params.someone_died) && !(*current->params.full_eaten))
 	{
-		if (current->params.nbr_philo == 1)
-			continue ;
 		pthread_mutex_lock(current->fork);
 		ft_print_status(current, current->params.write, "\033[0;33mhas taken a fork\033[0;0m\n");
 		pthread_mutex_lock(current->next->fork);
@@ -99,8 +97,20 @@ void	ft_simulation(t_philo *current)
 
 void	ft_routine(t_philo *current)
 {
-	if (current->philo_id % 2)
-		ft_sleep(current->params, 50);
-	if (!(*current->params.someone_died))
-		ft_simulation(current);
+	time_t	now;
+
+	if (current->params.nbr_philo == 1)
+	{
+		ft_sleep(current->params, current->params.time_to_die);
+		now = ft_get_time_in_ms(NULL) - current->params.start_time;
+		printf("%ld \033[0;34m%d\033[0;0m %s", now, current->philo_id, "\033[0;31mdied\033[0;0m\n");
+		return ;
+	}
+	else
+	{
+		if (current->philo_id % 2)
+			ft_sleep(current->params, 50);
+		if (!(*current->params.someone_died))
+			ft_simulation(current);
+	}
 }
