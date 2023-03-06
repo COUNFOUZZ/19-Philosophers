@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:56:21 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/06 17:44:09 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 23:53:57 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	ft_check_must_eat(t_global *g)
 		if (g->philo->eat_count < g->params.must_eat)
 			break ;
 		i++;
+		g->philo = g->philo->next;
 	}
 	if (i == g->params.nbr_philo)
 		*g->params.full_eaten = 1;
@@ -84,11 +85,6 @@ void	ft_simulation(t_philo *current)
 		ft_sleep(current->params, current->params.time_to_eat);
 		pthread_mutex_unlock(current->fork);
 		pthread_mutex_unlock(current->next->fork);
-		// if (current->eat_count == current->params.must_eat)
-		// {
-		// 	(*current->params.full_eaten)++;
-		// 	break ;
-		// }
 		ft_print_status(current, current->params.write, "\033[0;35mis sleeping\033[0;0m\n");
 		ft_sleep(current->params, current->params.time_to_sleep);
 		ft_print_status(current, current->params.write, "\033[0;36mis thinking\033[0;0m\n");
