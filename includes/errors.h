@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 22:58:19 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/22 10:53:01 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 14:09:17 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ you must run the program as follows :\n\
 # define ERR_NOT_ENOUGH_PHILO "You must have minimum one philosopher \
 (argv[1]) !\n"
 # define ERR_NOT_ENOUGH_TIME_TO_DIE "The \"time to die\" (argv[2]) \
+must be only numeric and \
 must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m !\n"
 # define ERR_NOT_ENOUGH_TIME_TO_EAT "The \"time to eat\" (argv[3]) \
+must be only numeric and \
 must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m !\n"
 # define ERR_NOT_ENOUGH_TIME_TO_SLEEP "The \"time to sleep\" (argv[4]) \
-must not be \033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m !\n"
+must be only numeric and \
+must not be\033[0;31;1m0\033[0;0m or less than \033[0;31;1m0\033[0;0m !\n"
 # define ERR_NOT_ENOUGH_MUST_EAT "The \"number of times each philosopher must \
 eat\" (argv[5]) \
 must be \033[0;31;1mempty\033[0;0m or more than \033[0;31;1m0\033[0;0m ! \

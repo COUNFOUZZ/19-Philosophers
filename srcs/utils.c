@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:05:24 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/03 15:15:38 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 14:12:04 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	ft_parse_args(t_global *g, int argc, const char **argv)
 	g->params.time_to_die = ft_atoi(argv[2]);
 	g->params.time_to_eat = ft_atoi(argv[3]);
 	g->params.time_to_sleep = ft_atoi(argv[4]);
-	if (argc == 6)
+	if (argc == 6 && argv[5][0] != '0')
 		g->params.must_eat = ft_atoi(argv[5]);
 	else
 		g->params.must_eat = -1;
@@ -91,8 +91,6 @@ int	ft_init_struct(t_global *g, int argc, const char **argv)
 		return (g->err_check);
 	*g->params.full_eaten = 0;
 	*g->params.someone_died = 0;
-	printf("%d [%p]\n", *g->params.full_eaten, g->params.full_eaten);
-	printf("%d [%p]\n", *g->params.someone_died, g->params.someone_died);
 	if (ft_philo_init(g) < 0)
 		return (g->err_check);
 	if (ft_threads_init(g) < 0)

@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:09 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/27 16:34:26 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 14:03:43 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, const char **argv)
 
 	if (argc == 5 || argc == 6)
 	{
-		ft_error(&g, ft_init_struct(&g, argc, argv));
+		if (ft_error(&g, ft_init_struct(&g, argc, argv)) < 0)
+			return (g.err_check);
 		ft_free_philo(&g);
 		ft_destroy_mutex(&g);
 		ft_free_struct(&g);
