@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:56:21 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/03 15:17:05 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 15:07:16 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,29 @@ static void	ft_print_status(t_philo *philo, pthread_mutex_t *write, char *str)
 	pthread_mutex_unlock(write);
 }
 
+static void	ft_check_must_eat(t_global *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < g->params.nbr_philo)
+	{
+		if (g->philo->eat_count < g->params.must_eat)
+			break ;
+		i++;
+	}
+	if (i == g->params.nbr_philo)
+		*g->params.full_eaten = 1;
+
+}
+
 void	ft_philo_checker(t_global *g)
 {
 	time_t	now;
+	t_philo	*first;
 
-	while (!(*g->params.someone_died) && *g->params.full_eaten != g->params.nbr_philo)
+	first = g->philo;
+	while (!(*g->params.someone_died) && !(*g->params.full_eaten))
 	{
 		usleep(100);
 		while (g->philo)
@@ -37,8 +55,6 @@ void	ft_philo_checker(t_global *g)
 			{
 				pthread_mutex_lock(g->params.death);
 				pthread_mutex_lock(g->params.write);
-				// printf("%ld\n", now);
-				// printf("[%ld]\n", ft_get_time_in_ms(NULL) - (g->philo->last_meal + g->params.time_to_die));
 				printf("%ld \033[0;34m%d\033[0;0m %s", now, g->philo->philo_id, "\033[0;31mdied\033[0;0m\n");
 				*g->params.someone_died = 1;
 				pthread_mutex_unlock(g->params.write);
@@ -46,15 +62,20 @@ void	ft_philo_checker(t_global *g)
 				break ;
 			}
 			g->philo = g->philo->next;
+			if (g->philo == first)
+				break ;
 		}
+		if (g->params.must_eat != -1)
+			ft_check_must_eat(g);
 	}
 }
 
 void	ft_simulation(t_philo *current)
 {
-	//	1 philo = segfault
-	while (!(*current->params.someone_died) && *current->params.full_eaten != current->params.nbr_philo)
+	while (!(*current->params.someone_died) && !(*current->params.full_eaten))
 	{
+		if (current->params.nbr_philo == 1)
+			continue ;
 		pthread_mutex_lock(current->fork);
 		ft_print_status(current, current->params.write, "\033[0;33mhas taken a fork\033[0;0m\n");
 		pthread_mutex_lock(current->next->fork);
@@ -65,14 +86,11 @@ void	ft_simulation(t_philo *current)
 		ft_sleep(current->params, current->params.time_to_eat);
 		pthread_mutex_unlock(current->fork);
 		pthread_mutex_unlock(current->next->fork);
-		if (current->eat_count == current->params.must_eat)
-		{
-			pthread_mutex_lock(current->params.eat);
-			(*current->params.full_eaten)++;
-			pthread_mutex_unlock(current->params.eat);
-			printf("philo #%d [%d]\n", current->philo_id, *current->params.full_eaten);
-			break ;
-		}
+		// if (current->eat_count == current->params.must_eat)
+		// {
+		// 	(*current->params.full_eaten)++;
+		// 	break ;
+		// }
 		ft_print_status(current, current->params.write, "\033[0;35mis sleeping\033[0;0m\n");
 		ft_sleep(current->params, current->params.time_to_sleep);
 		ft_print_status(current, current->params.write, "\033[0;36mis thinking\033[0;0m\n");
