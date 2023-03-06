@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/03 15:18:48 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 13:20:48 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <stdatomic.h>
 # include "errors.h"
 
 typedef struct s_params
@@ -28,7 +29,7 @@ typedef struct s_params
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
-	int				*someone_died;
+	atomic_int		*someone_died;
 	int				*full_eaten;
 	time_t			start_time;
 	pthread_mutex_t	*eat;
@@ -40,7 +41,7 @@ typedef struct s_philo
 {
 	int				philo_id;
 	int				eat_count;
-	time_t			last_meal;
+	atomic_long		last_meal;
 	pthread_t		thread_id;
 	pthread_mutex_t	*fork;
 	t_params		params;
