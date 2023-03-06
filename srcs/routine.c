@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:56:21 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/06 15:07:16 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:11:29 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_philo_checker(t_global *g)
 			if (g->philo == first)
 				break ;
 		}
-		if (g->params.must_eat != -1)
+		if (g->params.must_eat != -1 && g->params.nbr_philo > 1)
 			ft_check_must_eat(g);
 	}
 }
