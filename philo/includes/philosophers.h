@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:47:56 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/07 00:12:30 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/07 11:40:30 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int		ft_init_struct(t_global *g, int argc, const char **argv);
 /*		../srcs/add_philo.c		*/
 int		ft_add_philo(t_global *g, int philo_nbr);
 void	ft_add_prev_for_first_and_last(t_global *g);
-void	ft_print_lst(t_global *g);
 
 /*		../srcs/thread.c		*/
 int		ft_threads_init(t_global *g);
@@ -83,7 +82,6 @@ time_t	ft_get_time_in_ms(t_global *g);
 void	ft_sleep(t_params params, time_t time);
 
 /*		../srcs/routine.c		*/
-void	ft_philo_checker(t_global *g);
 void	ft_routine(t_philo *current);
 
 /*		../srcs/philo_utils.c		*/
