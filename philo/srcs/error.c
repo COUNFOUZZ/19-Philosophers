@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:32:59 by aabda             #+#    #+#             */
-/*   Updated: 2023/02/27 17:06:09 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/08 17:12:35 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,6 @@ static void	ft_error_message(int res)
 		ft_putstr_fd(2, ERR_GET_TIME);
 }
 
-int	ft_error(t_global *g, int res)
-{
-	if (res < 0)
-	{
-		ft_putstr_fd(2, "\033[0;31;1mERROR !\033[0m\n");
-		ft_error_message(res);
-		if (g->philo)
-			ft_free_philo(g);
-	}
-	return (res);
-}
-
 void	ft_free_struct(t_global *g)
 {
 	if (g->params.someone_died)
@@ -58,6 +46,19 @@ void	ft_free_struct(t_global *g)
 		free(g->params.death);
 	if (g->params.write)
 		free(g->params.write);
+}
+
+int	ft_error(t_global *g, int res)
+{
+	if (res < 0)
+	{
+		ft_putstr_fd(2, "\033[0;31;1mERROR !\033[0m\n");
+		ft_error_message(res);
+		if (g->philo)
+			ft_free_philo(g);
+		ft_free_struct(g);
+	}
+	return (res);
 }
 
 void	ft_free_philo(t_global *g)
