@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:32:59 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/08 17:12:35 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/13 17:15:20 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	ft_error(t_global *g, int res)
 		ft_error_message(res);
 		if (g->philo)
 			ft_free_philo(g);
-		ft_free_struct(g);
+		if (g->err_check > 1 && g->err_check < 7)
+			ft_free_struct(g);
 	}
 	return (res);
 }
